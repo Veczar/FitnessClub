@@ -11,15 +11,30 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 
 public class Logowanie extends Application {
     private String login;
     private String haslo;
 
+    public static Connection conn;
+
     @FXML
     private TextField loginText;
     @FXML
     private PasswordField hasloText;
+
+    private void setConnection() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/klubfitness", "root", "");
+            System.out.println("Connected");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,6 +44,8 @@ public class Logowanie extends Application {
         stage.setScene(logowanieScena);
         stage.setTitle("Logowanie");
         stage.show();
+
+        setConnection();
     }
     public static void main(String[] args) {
         launch();
@@ -47,7 +64,7 @@ public class Logowanie extends Application {
             Scene klientScena = new Scene(fxmlLoader.load());
 
             KlientScenaKontroler klientScenaController = fxmlLoader.getController();
-            klientScenaController.Incjalizacja(id);
+            klientScenaController.Incjalizacja(id, conn);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(klientScena);

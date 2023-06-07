@@ -6,20 +6,46 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class KlientScenaKontroler {
 
     @FXML
     private Label idLabel;
 
-    private int id;
+    @FXML
+    private TableView<Klient> tabela;
 
-    public void Incjalizacja(int id) {
+    @FXML
+    private TableColumn<Klient, String> imieKol;
+
+    @FXML
+    private TableColumn<Klient, String> nazwiskoKol;
+
+    @FXML
+    private TableColumn<Klient, String> telefonKol;
+
+
+    private int id;
+    private Connection connection;
+
+    public void Incjalizacja(int id, Connection connection) {
         this.id = id;
         idLabel.setText("ID: " + id);
+
+        this.connection = connection;
+
+        ustawTabele();
+        wypiszDane();
     }
 
     public void Wyloguj(ActionEvent event) throws IOException {
@@ -33,4 +59,39 @@ public class KlientScenaKontroler {
         stage.show();
     }
 
+    private void ustawTabele() {
+        try {
+            imieKol.setCellValueFactory(new PropertyValueFactory<>("imie"));
+            nazwiskoKol.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
+            telefonKol.setCellValueFactory(new PropertyValueFactory<>("telefon"));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void wypiszDane() {
+        try {
+            tabela.getItems().clear();
+
+            String query = "SELECT * FROM klienci WHERE id = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            rs.next();
+
+            Klient klient = new Klient( rs.getString("imie"),
+                                        rs.getString("nazwisko"),
+                                        rs.getString("telefon"));
+
+            System.out.println(klient);
+            tabela.getItems().add(klient);
+
+            preparedStatement.close();
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
