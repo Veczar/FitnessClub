@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="758a1133-93c5-4990-a7ec-0468122f7d78" name="Changes" comment="Łączenie się z bazą i dodanie wyników do tabeli">
-      <change afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/Klient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/DodajKlientaKontroler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/klubfitnes/dodajKlienta.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/KlientScenaKontroler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/KlientScenaKontroler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/KasjerScenaKontroler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/KasjerScenaKontroler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/Klient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/Klient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/Logowanie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/Logowanie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/klubfitnes/klient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klubfitnes/klient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/klubfitnes/kasjer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klubfitnes/kasjer.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,13 +26,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="3cb90d4b-44f1-498d-93a0-3d093ac18a01" />
+        <option name="url" value="https://github.com/Naxden/KlubFitnes.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -48,27 +63,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive - Politechnika Krakowska im. Tadeusza Kościuszki/Studia/IV_Semestr/Obiektowe/KlubFitnes&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "last_opened_file_path": "C:/Users/Vecza/java_font/jfoenix-9.0.10.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\OneDrive - Politechnika Krakowska im. Tadeusza Kościuszki\Studia\IV_Semestr\Obiektowe\KlubFitnes\src\main\resources\klubfitnes" />
@@ -127,5 +142,15 @@
     <MESSAGE value="Podstawowe Logowanie" />
     <MESSAGE value="Łączenie się z bazą i dodanie wyników do tabeli" />
     <option name="LAST_COMMIT_MESSAGE" value="Łączenie się z bazą i dodanie wyników do tabeli" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

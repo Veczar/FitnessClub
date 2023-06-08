@@ -29,7 +29,7 @@ public class Logowanie extends Application {
     private void setConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/klubfitness", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/klubfitnes", "root", "");
             System.out.println("Connected");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,6 +38,7 @@ public class Logowanie extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(Logowanie.class.getResource("logowanie.fxml"));
         Scene logowanieScena = new Scene(fxmlLoader.load());
 
@@ -48,7 +49,7 @@ public class Logowanie extends Application {
         setConnection();
     }
     public static void main(String[] args) {
-        launch();
+            launch();
     }
 
     public void Zaloguj(ActionEvent event) throws IOException {
@@ -70,6 +71,8 @@ public class Logowanie extends Application {
             stage.setScene(klientScena);
             stage.setTitle("Klient");
             stage.show();
+
+
         } else if (login.equals("admin") && haslo.equals("admin")) {
             int id = 2;
 
@@ -103,7 +106,7 @@ public class Logowanie extends Application {
             Scene kasjerScena = new Scene(fxmlLoader.load());
 
             KasjerScenaKontroler kasjerScenaController = fxmlLoader.getController();
-            kasjerScenaController.Incjalizacja(id);
+            kasjerScenaController.Incjalizacja(id,conn);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(kasjerScena);
