@@ -80,15 +80,16 @@ public class KlientScenaKontroler {
 
             rs.next();
 
-            Klient klient = new Klient( rs.getString("imie"),
+            Klient klient = new Klient( rs.getInt("id"),
+                                        rs.getString("imie"),
                                         rs.getString("nazwisko"),
                                         rs.getString("telefon"));
 
             System.out.println(klient);
             tabela.getItems().add(klient);
 
-            preparedStatement.close();
             rs.close();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

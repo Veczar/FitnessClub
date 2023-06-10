@@ -27,7 +27,7 @@ public class KasjerScenaKontroler {
     @FXML
     private TableView<Klient> tabelaKlientow;
     @FXML
-    private TableColumn<Klient,String> idKol;
+    private TableColumn<Klient, String> idKol;
     @FXML
     private TableColumn<Klient,String> imieKol;
     @FXML
@@ -66,7 +66,7 @@ public class KasjerScenaKontroler {
 
     private void ustawTabele() {
         try {
-            //idKol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            idKol.setCellValueFactory(new PropertyValueFactory<>("id"));
             imieKol.setCellValueFactory(new PropertyValueFactory<>("imie"));
             nazwiskoKol.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
             telefonKol.setCellValueFactory(new PropertyValueFactory<>("telefon"));
@@ -90,12 +90,16 @@ public class KasjerScenaKontroler {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()){
-                listaKlientow.add(new Klient(rs.getString("imie"),
+                listaKlientow.add(new Klient(
+                        rs.getInt("id"),
+                        rs.getString("imie"),
                         rs.getString("nazwisko"),
                         rs.getString("telefon")));
-
-                tabelaKlientow.setItems(listaKlientow);
             }
+            for (Klient klient : listaKlientow) {
+                System.out.println(klient);
+            }
+            tabelaKlientow.setItems(listaKlientow);
 
 
             preparedStatement.close();
