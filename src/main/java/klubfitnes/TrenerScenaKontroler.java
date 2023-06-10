@@ -4,11 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -90,6 +95,30 @@ public class TrenerScenaKontroler {
         ustawDzienTygodniaLabel(dzienTygodnia);
         wypiszTreningi();
     }
+    @FXML
+    private void dodajTreningGrupowy(javafx.scene.input.MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(TreningGrupowyKontroler.class.getResource("dodajTreningGrupowy.fxml"));
+            Scene scena = new Scene(fxmlLoader.load());
+
+            TreningGrupowyKontroler treningGrupowyKontroler = fxmlLoader.getController();
+            treningGrupowyKontroler.inicjalizacja(id,connection);
+
+            Stage stage = new Stage();
+            stage.setScene(scena);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @FXML
+    private void dodajTreningIndywidualny(javafx.scene.input.MouseEvent mouseEvent) {
+
+    }
+
+
 
     private void ustawTabele() {
         try {
@@ -128,9 +157,10 @@ public class TrenerScenaKontroler {
                         godzina
                 ));
 
-                preparedStatement.close();
-                rsGrupowe.close();
+
             }
+            rsGrupowe.close();
+            preparedStatement.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -139,7 +169,8 @@ public class TrenerScenaKontroler {
     private ArrayList<TreningIndywidualny> pobierzTreningiIndywidualne() {
         ArrayList<TreningIndywidualny> listaTreningow = new ArrayList<>();
         try{
-            String queryIndywidulane = "SELECT * FROM treningi_indywidualne WHERE idTrenera = " + id + " AND dzienTygodnia = " + dzienTygodnia.getWartosc();
+            String queryIndywidulane = "SELECT CONCAT(klienci.imie, ' ', klienci.nazwisko) as nazwa, godzina FROM treningi_indywidualne " +
+                    "JOIN klienci ON treningi_indywidualne.idKlienta = klienci.id WHERE idTrenera = " + id + " AND dzienTygodnia = " + dzienTygodnia.getWartosc();
             PreparedStatement preparedStatement = connection.prepareStatement(queryIndywidulane);
             ResultSet rsIndywidualne = preparedStatement.executeQuery();
 
@@ -148,16 +179,15 @@ public class TrenerScenaKontroler {
                 String godzinaString = rsIndywidualne.getString("godzina");
                 Time godzina = Time.valueOf(godzinaString);
 
-                String daneKlienta = daneKlienta(rsIndywidualne.getInt("idKlienta"));
 
                 listaTreningow.add(new TreningIndywidualny(
                         godzina,
-                        daneKlienta
+                        rsIndywidualne.getString("nazwa")
                 ));
 
-                preparedStatement.close();
-                rsIndywidualne.close();
             }
+            rsIndywidualne.close();
+            preparedStatement.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

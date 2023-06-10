@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -34,7 +35,7 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <MenuButton fx:id="dzienTygodniaMenu" layoutX="252.0" layoutY="115.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0" text="MenuButton">
+      <MenuButton fx:id="dzienTygodniaMenu" layoutX="252.0" layoutY="115.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#WybierzePoniedzialek" text="Poniedziałek" />
           <MenuItem mnemonicParsing="false" onAction="#WybierzeWtorek" text="Wtorek" />
@@ -45,10 +46,12 @@
             <MenuItem mnemonicParsing="false" onAction="#WybierzeNiedziela" text="Niedziela" />
         </items>
       </MenuButton>
-      <Label fx:id="dzienTygodniaLabel" alignment="CENTER" layoutX="437.0" layoutY="26.0" prefHeight="58.0" prefWidth="195.0" text="Label">
+      <Label fx:id="dzienTygodniaLabel" alignment="CENTER" layoutX="437.0" layoutY="26.0" prefHeight="58.0" prefWidth="359.0" text="Label">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Button fx:id="grupowyButton" layoutX="64.0" layoutY="173.0" mnemonicParsing="false" onMouseClicked="#dodajTreningGrupowy" prefHeight="51.0" prefWidth="177.0" text="Dodaj Trening Grupowy" />
+      <Button layoutX="64.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#dodajTreningIndywidualny" prefHeight="51.0" prefWidth="177.0" text="Dodaj Trening Indywidualny" />
    </children>
 </AnchorPane>

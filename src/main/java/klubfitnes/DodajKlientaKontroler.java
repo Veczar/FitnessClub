@@ -20,9 +20,7 @@ public class DodajKlientaKontroler {
 
     String query = null;
     Connection connection = null;
-    ResultSet resultSet = null;
     PreparedStatement preparedStatement;
-    Klient klient = null;
 
 
     public void inicjalizacja(Connection connection) {
