@@ -35,6 +35,7 @@ public class KlientScenaKontroler {
     private TableColumn<Klient, String> telefonKol;
 
 
+    private DzienTygodnia dzienTygodnia;
     private int id;
     private Connection connection;
 
@@ -93,6 +94,41 @@ public class KlientScenaKontroler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+    @FXML
+    private void WybierzePoniedzialek(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.PONIEDZIALEK;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzeWtorek(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.WTOREK;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzeSroda(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.SRODA;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzeCzwartek(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.CZWARTEK;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzePiatek(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.PIATEK;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzeSobota(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.SOBOTA;
+        System.out.println(dzienTygodnia);
+    }
+    @FXML
+    private void WybierzeNiedziela(ActionEvent event) {
+        dzienTygodnia = DzienTygodnia.NIEDZIELA;
+        System.out.println(dzienTygodnia);
+    }
+
 }
