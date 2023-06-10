@@ -87,13 +87,13 @@ public class Logowanie extends Application {
             stage.setTitle("Administrator");
             stage.show();
         } else if (login.equals("trener") && haslo.equals("trener")) {
-            int id = 3;
+            int id = 2;
 
             FXMLLoader fxmlLoader = new FXMLLoader(TrenerScenaKontroler.class.getResource("trener.fxml"));
             Scene trenerScena = new Scene(fxmlLoader.load());
 
             TrenerScenaKontroler trenerScenaController = fxmlLoader.getController();
-            trenerScenaController.Incjalizacja(id);
+            trenerScenaController.Incjalizacja(id, conn);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(trenerScena);
