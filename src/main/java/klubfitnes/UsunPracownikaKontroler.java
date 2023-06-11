@@ -2,30 +2,26 @@ package klubfitnes;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class AdministratorScenaKontroler {
-    @FXML
-    private Label idLabel;
-
-    private int id;
+public class UsunPracownikaKontroler {
     private Connection connection;
+    public void inicjalizacja(Connection connection) {
+        this.connection = connection;
+
+        ustawTabele();
+        wypiszPracownikow();
+
+    }
+
     @FXML
     private TableView<Osoba> tabelaPracownikow;
     @FXML
@@ -45,84 +41,13 @@ public class AdministratorScenaKontroler {
     private TableColumn<Osoba, String> nazwiskoKol;
     ObservableList<Osoba> listaPracownik= FXCollections.observableArrayList();
 
-    public void Incjalizacja(int id, Connection connection) {
-        this.connection = connection;
-        this.id = id;
-        idLabel.setText("ID: " + id);
-        ustawTabele();
-        wypiszTreningi();
-    }
 
-    @FXML
-    public void dodajTrenera(javafx.scene.input.MouseEvent mouseEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(DodajTreneraKontroler.class.getResource("dodajTrenera.fxml"));
-            Scene scena = new Scene(fxmlLoader.load());
-
-            DodajTreneraKontroler dodajTreneraKontroler = fxmlLoader.getController();
-            dodajTreneraKontroler.inicjalizacja(connection);
-
-            Stage stage = new Stage();
-            stage.setScene(scena);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void dodajKasjera(javafx.scene.input.MouseEvent mouseEvent){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(DodajKasjeraKontroler.class.getResource("dodajKasjera.fxml"));
-            Scene scena = new Scene(fxmlLoader.load());
-
-            DodajKasjeraKontroler kasjeraKontroler = fxmlLoader.getController();
-            kasjeraKontroler.inicjalizacja(connection);
-
-
-            Stage stage = new Stage();
-            stage.setScene(scena);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void dodajAdministratora(javafx.scene.input.MouseEvent mouseEvent){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(DodajAdminaKontroler.class.getResource("dodajAdmina.fxml"));
-            Scene scena = new Scene(fxmlLoader.load());
-
-            DodajAdminaKontroler adminaKontroler = fxmlLoader.getController();
-            adminaKontroler.inicjalizacja(connection);
-
-            Stage stage = new Stage();
-            stage.setScene(scena);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    @FXML
-    public void usun(javafx.scene.input.MouseEvent mouseEvent){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(UsunPracownikaKontroler.class.getResource("usunPracownika.fxml"));
-            Scene scena = new Scene(fxmlLoader.load());
-
-            UsunPracownikaKontroler usunPracownikaKontroler = fxmlLoader.getController();
-            usunPracownikaKontroler.inicjalizacja(connection);
-
-            Stage stage = new Stage();
-            stage.setScene(scena);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public void wypiszPracownikow(){
+        listaPracownik.clear();
+        listaPracownik.addAll(pobierzDaneTrener());
+        listaPracownik.addAll(pobierzDaneKasjer());
+        listaPracownik.addAll(pobierzDaneAdmin());
+        tabelaPracownikow.setItems(listaPracownik);
     }
 
     private void ustawTabele() {
@@ -139,21 +64,6 @@ public class AdministratorScenaKontroler {
             e.printStackTrace();
         }
     }
-    @FXML
-    public void odswiez(){
-        wypiszTreningi();
-    }
-
-    public void wypiszTreningi(){
-        listaPracownik.clear();
-        listaPracownik.addAll(pobierzDaneTrener());
-        listaPracownik.addAll(pobierzDaneKasjer());
-        listaPracownik.addAll(pobierzDaneAdmin());
-        tabelaPracownikow.setItems(listaPracownik);
-    }
-
-
-
     private ArrayList<Trener> pobierzDaneTrener() {
         ArrayList<Trener> listaTrenerow = new ArrayList<>();
         try {
@@ -244,14 +154,29 @@ public class AdministratorScenaKontroler {
         return listaAdminow;
     }
 
-    public void wyloguj(ActionEvent event) throws IOException {
+    @FXML
+    public void usunPracownika(javafx.scene.input.MouseEvent mouseEvent){
+         Osoba osoba = tabelaPracownikow.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(Logowanie.class.getResource("Logowanie.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene logowanieScena = new Scene(loader.load());
+        if (osoba != null) {
+            try {
+                int id = osoba.getId();
 
-        stage.setScene(logowanieScena);
-        stage.setTitle("Logowanie");
-        stage.show();
+                // Usuń rekord z bazy danych
+                String query = "DELETE FROM konta WHERE idKonta = ?";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+
+                // Odśwież listę pracowników
+                wypiszPracownikow();
+
+              } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+              }
+
+        }
     }
 }

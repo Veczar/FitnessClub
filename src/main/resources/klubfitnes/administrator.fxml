@@ -24,7 +24,7 @@
           <TableColumn fx:id="idKol" prefWidth="50.0" text="id" />
           <TableColumn fx:id="loginKol" prefWidth="100.0" text="Login" />
             <TableColumn fx:id="hasloKol" prefWidth="106.0" text="Hasło" />
-            <TableColumn fx:id="rolaKol" text="Rola" />
+            <TableColumn fx:id="typKontaKol" text="Typ Konta" />
             <TableColumn fx:id="imieKol" prefWidth="105.0" text="Imie" />
             <TableColumn fx:id="nazwiskoKol" prefWidth="116.0" text="Nazwisko" />
         </columns>
@@ -33,5 +33,7 @@
       <Button layoutX="45.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#dodajKasjera" prefHeight="58.0" prefWidth="127.0" text="Dodaj Kasjera" />
       <Button layoutX="45.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#usun" prefHeight="58.0" prefWidth="127.0" text="Usuń" />
       <Button layoutX="45.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#dodajAdministratora" prefHeight="58.0" prefWidth="141.0" text="Dodaj Administratora" />
+      <Button layoutX="497.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#odswiez" prefHeight="52.0" prefWidth="177.0" text="Odśwież" />
+      <Button layoutX="378.0" layoutY="456.0" mnemonicParsing="false" onAction="#wyloguj" prefHeight="52.0" prefWidth="141.0" text="Wyloguj" />
    </children>
 </AnchorPane>
