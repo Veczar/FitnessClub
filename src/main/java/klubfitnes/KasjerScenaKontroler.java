@@ -35,6 +35,8 @@ public class KasjerScenaKontroler {
 
     @FXML
     private TableColumn<Klient, String> telefonKol;
+    @FXML
+    private TableColumn<Klient, java.sql.Date> karnetKol;
 
     private int id;
 
@@ -70,6 +72,7 @@ public class KasjerScenaKontroler {
             imieKol.setCellValueFactory(new PropertyValueFactory<>("imie"));
             nazwiskoKol.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
             telefonKol.setCellValueFactory(new PropertyValueFactory<>("telefon"));
+            karnetKol.setCellValueFactory(new PropertyValueFactory<>("dataWygasnieciaKarnetu"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -85,16 +88,20 @@ public class KasjerScenaKontroler {
         try{
             listaKlientow.clear();
 
-            String query = "SELECT * FROM Klienci";
+            String query = "SELECT * FROM Klienci JOIN konta ON konta.idKonta = klienci.id";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()){
-               /* listaKlientow.add(new Klient(
+                listaKlientow.add(new Klient(
                         rs.getInt("id"),
                         rs.getString("imie"),
                         rs.getString("nazwisko"),
-                        rs.getString("telefon")));*/ //TODO: poprawić
+                        rs.getString("telefon"),
+                        rs.getString("login"),
+                        rs.getString("haslo"),
+                        TypKonta.KLIENT.name(),
+                        rs.getDate("dataKarnetu")));
             }
             for (Klient klient : listaKlientow) {
                 System.out.println(klient);

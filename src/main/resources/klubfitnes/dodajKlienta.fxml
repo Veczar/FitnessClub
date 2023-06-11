@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.DodajKlientaKontroler">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.DodajKlientaKontroler">
    <children>
       <HBox prefHeight="39.0" prefWidth="724.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj Dane Klienta" wrappingWidth="383.13671875">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj Dane Klienta" wrappingWidth="461.13671875">
                <font>
                   <Font name="Agency FB" size="46.0" />
                </font>
@@ -38,7 +39,11 @@
                   <Insets left="80.0" top="15.0" />
                </HBox.margin>
             </Text>
-            <JFXTextArea fx:id="imieFid" prefHeight="47.0" prefWidth="502.0" />
+            <TextField fx:id="imieField" prefHeight="52.0" prefWidth="479.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
          </children>
          <opaqueInsets>
             <Insets />
@@ -57,7 +62,11 @@
                   <Insets left="80.0" top="15.0" />
                </HBox.margin>
             </Text>
-            <JFXTextArea fx:id="nazwiskoFid" prefHeight="47.0" prefWidth="502.0" />
+            <TextField fx:id="nazwiskoField" prefHeight="52.0" prefWidth="479.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
          </children>
          <opaqueInsets>
             <Insets />
@@ -76,7 +85,11 @@
                   <Insets left="80.0" top="15.0" />
                </HBox.margin>
             </Text>
-            <JFXTextArea fx:id="telefonFid" prefHeight="47.0" prefWidth="502.0" />
+            <TextField fx:id="telefonField" prefHeight="52.0" prefWidth="479.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
          </children>
          <opaqueInsets>
             <Insets />
@@ -85,7 +98,72 @@
             <Insets top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="124.0" prefWidth="724.0">
+      <HBox prefHeight="40.0" prefWidth="724.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="127.13671875">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="80.0" top="15.0" />
+               </HBox.margin>
+            </Text>
+            <TextField fx:id="loginField" prefHeight="52.0" prefWidth="479.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="724.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Haslo" wrappingWidth="127.13671875">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="80.0" top="15.0" />
+               </HBox.margin>
+            </Text>
+            <TextField fx:id="hasloField" prefHeight="52.0" prefWidth="479.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="724.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Karnet" wrappingWidth="128.13671875">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="80.0" top="15.0" />
+               </HBox.margin>
+            </Text>
+            <DatePicker fx:id="karnetDate" prefHeight="48.0" prefWidth="478.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="119.0" prefWidth="709.0">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#save" prefHeight="49.0" prefWidth="180.0" text="Save">
                <font>

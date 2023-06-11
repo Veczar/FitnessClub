@@ -27,6 +27,7 @@
           <TableColumn fx:id="imieKol" prefWidth="75.0" text="IMIĘ" />
             <TableColumn fx:id="nazwiskoKol" prefWidth="75.0" text="NAZWISKO" />
             <TableColumn fx:id="telefonKol" prefWidth="169.0" text="TELEFON" />
+            <TableColumn fx:id="karnetKol" prefWidth="244.0" text="KARNET" />
         </columns>
       </TableView>
       <Pane layoutX="-2.0" layoutY="103.0" prefHeight="7.0" prefWidth="754.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="0.0" />

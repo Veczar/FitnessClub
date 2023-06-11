@@ -64,15 +64,19 @@ public class KlientScenaKontroler {
     @FXML
     private void daneKlienta() {
         try {
-            String query = "SELECT * FROM klienci WHERE id = " + idKonta;
+            String query = "SELECT * FROM klienci JOIN konta ON konta.idKonta = klienci.id WHERE id = " + idKonta;
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
 
             rs.next();
-            /*klient = new Klient(rs.getInt("id"),
+            klient = new Klient(rs.getInt("id"),
                     rs.getString("imie"),
                     rs.getString("nazwisko"),
-                    rs.getString("telefon"));*/ //TODO: poprawić konstruktor klienta
+                    rs.getString("telefon"),
+                    rs.getString("login"),
+                    rs.getString("haslo"),
+                    TypKonta.KLIENT.name(),
+                    rs.getDate("dataKarnetu"));
 
             wypiszDaneKlienta();
 
@@ -85,6 +89,7 @@ public class KlientScenaKontroler {
 
     private void wypiszDaneKlienta() {
         imieNazwiskoLabel.setText(klient.getImie() + " " + klient.getNazwisko());
+        karnetLabel.setText("Data wygasniecia karnetu: " + klient.getDataWygasnieciaKarnetu().toString());
     }
 
     public void wyloguj(ActionEvent event) throws IOException {
