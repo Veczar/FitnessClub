@@ -6,13 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 
 public class Logowanie extends Application {
@@ -56,64 +56,87 @@ public class Logowanie extends Application {
         login = loginText.getText();
         haslo = hasloText.getText();
 
-        System.out.println("Zalogowano: " + login + " " + haslo);
+        boolean logowanie = false;
+        int typKonta = -1;
+        int idKonta = -1;
 
-        if (login.equals("klient") && haslo.equals("klient")) {
-            int id = 1;
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT idKonta, typKonta FROM konta WHERE login = ? AND haslo = ?");
+            ps.setString(1, login);
+            ps.setString(2, haslo);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(KlientScenaKontroler.class.getResource("klient.fxml"));
-            Scene klientScena = new Scene(fxmlLoader.load());
+            ResultSet rs = ps.executeQuery();
 
-            KlientScenaKontroler klientScenaController = fxmlLoader.getController();
-            klientScenaController.incjalizacja(id, conn);
+            if (rs.next()) {
+                idKonta = rs.getInt("idKonta");
+                typKonta = rs.getInt("typKonta");
+            } else {
+                throw new SQLException();
+            }
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(klientScena);
-            stage.setTitle("Klient");
-            stage.show();
+            logowanie = true;
+        } catch (SQLException sqlException) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Bledny login lub haslo.");
+            alert.showAndWait();
+        }
 
+        if (!logowanie) {
+            return;
+        }
 
-        } else if (login.equals("admin") && haslo.equals("admin")) {
-            int id = 5;
+        TypKonta typKontaEnum = TypKonta.values()[typKonta - 1];
 
-            FXMLLoader fxmlLoader = new FXMLLoader(AdministratorScenaKontroler.class.getResource("administrator.fxml"));
-            Scene adminScena = new Scene(fxmlLoader.load());
+        switch (typKontaEnum) {
+            case KLIENT -> {
+                FXMLLoader fxmlLoader = new FXMLLoader(KlientScenaKontroler.class.getResource("klient.fxml"));
+                Scene klientScena = new Scene(fxmlLoader.load());
 
-            AdministratorScenaKontroler adminScenaController = fxmlLoader.getController();
-            adminScenaController.Incjalizacja(id, conn);
+                KlientScenaKontroler klientScenaController = fxmlLoader.getController();
+                klientScenaController.incjalizacja(idKonta, conn);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(adminScena);
-            stage.setTitle("Administrator");
-            stage.show();
-        } else if (login.equals("trener") && haslo.equals("trener")) {
-            int id = 2;
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(klientScena);
+                stage.setTitle("Klient");
+                stage.show();
+            }
+            case TRENER -> {
+                FXMLLoader fxmlLoader = new FXMLLoader(TrenerScenaKontroler.class.getResource("trener.fxml"));
+                Scene trenerScena = new Scene(fxmlLoader.load());
 
-            FXMLLoader fxmlLoader = new FXMLLoader(TrenerScenaKontroler.class.getResource("trener.fxml"));
-            Scene trenerScena = new Scene(fxmlLoader.load());
+                TrenerScenaKontroler trenerScenaController = fxmlLoader.getController();
+                trenerScenaController.Incjalizacja(idKonta, conn);
 
-            TrenerScenaKontroler trenerScenaController = fxmlLoader.getController();
-            trenerScenaController.Incjalizacja(id, conn);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(trenerScena);
+                stage.setTitle("Trener");
+                stage.show();
+            }
+            case KASJER -> {
+                FXMLLoader fxmlLoader = new FXMLLoader(KasjerScenaKontroler.class.getResource("kasjer.fxml"));
+                Scene kasjerScena = new Scene(fxmlLoader.load());
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(trenerScena);
-            stage.setTitle("Trener");
-            stage.show();
-        } else if (login.equals("kasjer") && haslo.equals("kasjer")) {
-            int id = 4;
+                KasjerScenaKontroler kasjerScenaController = fxmlLoader.getController();
+                kasjerScenaController.Incjalizacja(idKonta,conn);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(KasjerScenaKontroler.class.getResource("kasjer.fxml"));
-            Scene kasjerScena = new Scene(fxmlLoader.load());
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(kasjerScena);
+                stage.setTitle("Kasjer");
+                stage.show();
+            }
+            case ADMINISTRATOR -> {
+                FXMLLoader fxmlLoader = new FXMLLoader(AdministratorScenaKontroler.class.getResource("administrator.fxml"));
+                Scene adminScena = new Scene(fxmlLoader.load());
 
-            KasjerScenaKontroler kasjerScenaController = fxmlLoader.getController();
-            kasjerScenaController.Incjalizacja(id,conn);
+                AdministratorScenaKontroler adminScenaController = fxmlLoader.getController();
+                adminScenaController.Incjalizacja(idKonta, conn);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(kasjerScena);
-            stage.setTitle("Kasjer");
-            stage.show();
-        } else {
-            System.out.println("Niepoprawne dane logowania");
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(adminScena);
+                stage.setTitle("Administrator");
+                stage.show();
+            }
         }
     }
 
