@@ -120,7 +120,7 @@ public class KlientScenaKontroler {
         ArrayList<TreningGrupowy> listaTreningow = new ArrayList<>();
 
         try{
-            String queryGrupowe = "SELECT nazwa, sala, godzina, idTrenera FROM cwiczenia_grupowe " +
+            String queryGrupowe = "SELECT id, nazwa, sala, godzina, idTrenera FROM cwiczenia_grupowe " +
                     "JOIN treningi_grupowe ON treningi_grupowe.idCwiczenia = cwiczenia_grupowe.id " +
                     "WHERE treningi_grupowe.idKlienta = " + idKonta +
                     " AND dzienTygodnia = " + dzienTygodnia.getWartosc();
@@ -134,10 +134,12 @@ public class KlientScenaKontroler {
                 Time godzina = Time.valueOf(godzinaString);
 
                 listaTreningow.add(new TreningGrupowy(
+                        rsGrupowe.getInt("id"),
                         rsGrupowe.getInt("idTrenera"),
                         rsGrupowe.getString("sala"),
                         rsGrupowe.getString("nazwa"),
-                        godzina
+                        godzina,
+                        dzienTygodnia.name()
                 ));
             }
 
@@ -161,13 +163,18 @@ public class KlientScenaKontroler {
 
             while (rsIndywidualne.next()){
 
+
+
                 String godzinaString = rsIndywidualne.getString("godzina");
                 Time godzina = Time.valueOf(godzinaString);
 
                 listaTreningow.add(new TreningIndywidualny(
+                        idKonta,
                         rsIndywidualne.getInt("id"),
                         godzina,
-                        rsIndywidualne.getString("nazwa")
+                        rsIndywidualne.getString("nazwa"),
+                        dzienTygodnia.name()
+
                 ));
             }
             preparedStatement.close();

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="669.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.TrenerScenaKontroler">
+<AnchorPane onMouseClicked="#usunTrening" prefHeight="669.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.TrenerScenaKontroler">
    <children>
       <Label layoutX="50.0" layoutY="32.0" prefHeight="58.0" prefWidth="141.0" text="Trener">
          <font>
@@ -46,12 +46,23 @@
             <MenuItem mnemonicParsing="false" onAction="#WybierzeNiedziela" text="Niedziela" />
         </items>
       </MenuButton>
-      <Label fx:id="dzienTygodniaLabel" alignment="CENTER" layoutX="437.0" layoutY="26.0" prefHeight="58.0" prefWidth="359.0" text="Label">
+      <Label fx:id="dzienTygodniaLabel" layoutX="389.0" layoutY="32.0" prefHeight="58.0" prefWidth="359.0" text="Label">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
       <Button fx:id="grupowyButton" layoutX="64.0" layoutY="173.0" mnemonicParsing="false" onMouseClicked="#dodajTreningGrupowy" prefHeight="51.0" prefWidth="177.0" text="Dodaj Trening Grupowy" />
       <Button layoutX="64.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#dodajTreningIndywidualny" prefHeight="51.0" prefWidth="177.0" text="Dodaj Trening Indywidualny" />
+      <Button layoutX="758.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#odswiez" prefHeight="51.0" prefWidth="108.0" text="Odśwież">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="380.0" layoutY="555.0" mnemonicParsing="false" onMouseClicked="#wyloguj" prefHeight="58.0" prefWidth="128.0" text="Wyloguj">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="66.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#usunTrening" prefHeight="58.0" prefWidth="177.0" text="Usuń Trening" />
    </children>
 </AnchorPane>
