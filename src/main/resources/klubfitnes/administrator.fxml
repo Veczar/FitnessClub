@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.AdministratorScenaKontroler">
+<AnchorPane prefHeight="544.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.AdministratorScenaKontroler">
    <children>
-      <Label layoutX="95.0" layoutY="40.0" prefHeight="58.0" prefWidth="141.0" text="Admin">
+      <Label layoutX="45.0" layoutY="40.0" prefHeight="58.0" prefWidth="141.0" text="Admin">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label fx:id="idLabel" layoutX="67.0" layoutY="121.0" text="ID: ">
+      <Label fx:id="idLabel" layoutX="304.0" layoutY="54.0" text="ID: ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <TableView fx:id="tabelaPracownikow" layoutX="218.0" layoutY="119.0" prefHeight="303.0" prefWidth="558.0">
+        <columns>
+          <TableColumn fx:id="idKol" prefWidth="50.0" text="id" />
+          <TableColumn fx:id="loginKol" prefWidth="100.0" text="Login" />
+            <TableColumn fx:id="hasloKol" prefWidth="106.0" text="Hasło" />
+            <TableColumn fx:id="rolaKol" text="Rola" />
+            <TableColumn fx:id="imieKol" prefWidth="105.0" text="Imie" />
+            <TableColumn fx:id="nazwiskoKol" prefWidth="116.0" text="Nazwisko" />
+        </columns>
+      </TableView>
+      <Button layoutX="45.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#dodajTrenera" prefHeight="58.0" prefWidth="127.0" text="Dodaj Trenera" />
+      <Button layoutX="45.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#dodajKasjera" prefHeight="58.0" prefWidth="127.0" text="Dodaj Kasjera" />
+      <Button layoutX="45.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#usun" prefHeight="58.0" prefWidth="127.0" text="Usuń" />
+      <Button layoutX="45.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#dodajAdministratora" prefHeight="58.0" prefWidth="141.0" text="Dodaj Administratora" />
    </children>
 </AnchorPane>

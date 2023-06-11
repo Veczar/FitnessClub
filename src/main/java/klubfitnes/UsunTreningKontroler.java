@@ -28,6 +28,8 @@ public class UsunTreningKontroler {
 
     @FXML
     private TableColumn<Trening, java.sql.Time> godzinaKol;
+    @FXML
+    private TableColumn<Trening, String> dzienTygodniaKol;
     ObservableList<Trening> listaTreningow= FXCollections.observableArrayList();
     public void inicjalizacja(int id, Connection connection) {
         this.connection = connection;
@@ -41,6 +43,7 @@ public class UsunTreningKontroler {
             salaKol.setCellValueFactory(new PropertyValueFactory<>("sala"));
             opisKol.setCellValueFactory(new PropertyValueFactory<>("opis"));
             godzinaKol.setCellValueFactory(new PropertyValueFactory<>("godzina"));
+            dzienTygodniaKol.setCellValueFactory(new PropertyValueFactory<>("dzienTygodnia"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

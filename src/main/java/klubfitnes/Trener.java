@@ -1,9 +1,8 @@
 package klubfitnes;
 
-public class Trener {
-    private DzienTygodnia dzien = DzienTygodnia.PONIEDZIALEK;
+public class Trener extends Osoba {
 
-    public void dupa(){
-        System.out.println(dzien.getWartosc());
+    public Trener(int id, String imie, String nazwisko, String telefon, String login, String haslo, TypKonta typKonta) {
+        super(id, imie, nazwisko, telefon, login, haslo, typKonta);
     }
 }
