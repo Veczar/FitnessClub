@@ -64,9 +64,10 @@ public class ZapisTreningIndywidualnyKontroler {
                 String dzienTygodnia = DzienTygodnia.values()[rsIndywidualne.getInt("dzienTygodnia") - 1].name();
 
                 listaTreningow.add(new TreningIndywidualny(
+                        idKlienta,
                         rsIndywidualne.getInt("idTrenera"),
-                        dzienTygodnia, //tryb zamieniamy na dzien tygodnia
                         godzina,
+                        "Grupowe",
                         rsIndywidualne.getString("prowadzacy")));
             }
 

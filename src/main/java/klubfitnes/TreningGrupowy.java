@@ -1,7 +1,13 @@
 package klubfitnes;
 
 public class TreningGrupowy extends Trening {
-    public TreningGrupowy(int idTrenera, String sala, String nazwa, java.sql.Time godzina) {
-        super(idTrenera, "Grupowy", sala, nazwa, godzina);
+    private int idCwiczenia;
+    public TreningGrupowy(int idCwiczenia, int idTrenera, String sala, String nazwa, java.sql.Time godzina, String dzienTygodnia) {
+        super(idTrenera, "Grupowy", sala, nazwa, godzina, dzienTygodnia);
+        this.idCwiczenia = idCwiczenia;
+    }
+
+    public int getIdCwiczenia() {
+        return idCwiczenia;
     }
 }
