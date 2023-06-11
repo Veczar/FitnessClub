@@ -110,7 +110,8 @@ public class KlientScenaKontroler {
             e.printStackTrace();
         }
     }
-    public void wypiszTreningi(){
+    @FXML
+    private void wypiszTreningi(){
         listaTreningow.clear();
         listaTreningow.addAll(pobierzTreningiIndywidualne());
         listaTreningow.addAll(pobierzTreningiGrupowe());
@@ -251,5 +252,66 @@ public class KlientScenaKontroler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void zapiszNaTreningGrupowy() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ZapisTreningGrupowyKontroler.class.getResource("zapiszNaTreningGrupowy.fxml"));
+            Scene scena = new Scene(fxmlLoader.load());
+
+            ZapisTreningGrupowyKontroler zapisTreningGrupowyKontroler = fxmlLoader.getController();
+            zapisTreningGrupowyKontroler.inizjalizacja(connection, idKonta);
+
+            Stage stage = new Stage();
+            stage.setScene(scena);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void zrezygnujZTreningu() {
+        Trening trening = tabelaTren.getSelectionModel().getSelectedItem();
+
+        if (trening == null)
+            return;
+
+        if (trening instanceof TreningGrupowy) {
+            TreningGrupowy treningGrupowy = (TreningGrupowy) trening;
+            try {
+                String query = "DELETE FROM treningi_grupowe WHERE idCwiczenia = ? AND idKlienta = ?";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, treningGrupowy.getIdCwiczenia());
+                preparedStatement.setInt(2, idKonta);
+                preparedStatement.executeUpdate();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (trening instanceof TreningIndywidualny) {
+            TreningIndywidualny treningIndywidualny = (TreningIndywidualny) trening;
+            try {
+                String query = "UPDATE treningi_indywidualne SET idKlienta = NULL " +
+                        "WHERE idKlienta = ? AND idTrenera = ? AND dzienTygodnia = ? AND godzina = ?";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, idKonta);
+                preparedStatement.setInt(2, treningIndywidualny.getIdTrenera());
+                preparedStatement.setInt(3, DzienTygodnia.valueOf(treningIndywidualny.getDzienTygodnia()).getWartosc());
+                preparedStatement.setTime(4, treningIndywidualny.getGodzina());
+
+                preparedStatement.executeUpdate();
+
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Nieznany typ treningu");
+        }
+
+
     }
 }

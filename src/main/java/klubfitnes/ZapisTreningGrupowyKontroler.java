@@ -9,16 +9,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
 
-public class ZapisTreningIndywidualnyKontroler {
+public class ZapisTreningGrupowyKontroler {
 
     @FXML
     private TableView<Trening> tabelaTren;
     @FXML
     private TableColumn<Trening, String> dzienTygodniaKol;
     @FXML
-    private TableColumn<Trening, java.sql.Time> godzinaKol;
+    private TableColumn<Trening, Time> godzinaKol;
     @FXML
-    private TableColumn<Trening, String> prowadzacyKol;
+    private TableColumn<Trening, String> salaKol;
+    @FXML
+    private TableColumn<Trening, String> nazwaKol;
 
     private Connection connection;
     private int idKlienta;
@@ -37,7 +39,8 @@ public class ZapisTreningIndywidualnyKontroler {
         try {
             dzienTygodniaKol.setCellValueFactory(new PropertyValueFactory<>("dzienTygodnia"));
             godzinaKol.setCellValueFactory(new PropertyValueFactory<>("godzina"));
-            prowadzacyKol.setCellValueFactory(new PropertyValueFactory<>("opis"));
+            salaKol.setCellValueFactory(new PropertyValueFactory<>("sala"));
+            nazwaKol.setCellValueFactory(new PropertyValueFactory<>("opis"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -49,32 +52,38 @@ public class ZapisTreningIndywidualnyKontroler {
         try {
             listaTreningow.clear();
 
-            String queryIndywidulane = "SELECT idTrenera, dzienTygodnia, godzina, CONCAT(trenerzy.imie, ' ', trenerzy.nazwisko) as prowadzacy " +
-                    "FROM treningi_indywidualne JOIN trenerzy ON treningi_indywidualne.idTrenera = trenerzy.id " +
-                    "WHERE idKlienta IS NULL; ";
-            PreparedStatement preparedStatement = connection.prepareStatement(queryIndywidulane);
-            ResultSet rsIndywidualne = preparedStatement.executeQuery();
+            String queryGrupowe = "SELECT id, idTrenera, nazwa, dzienTygodnia, godzina, sala, liczbaMiejsc, " +
+                    "COUNT(treningi_grupowe.idCwiczenia) as liczbaUczestnikow FROM cwiczenia_grupowe " +
+                    "LEFT JOIN treningi_grupowe ON cwiczenia_grupowe.id = treningi_grupowe.idCwiczenia " +
+                    "WHERE id NOT IN (SELECT idCwiczenia FROM treningi_grupowe WHERE idKlienta = ?) " +
+                    "HAVING liczbaUczestnikow < liczbaMiejsc; ";
 
-            while (rsIndywidualne.next()){
+            PreparedStatement preparedStatement = connection.prepareStatement(queryGrupowe);
+            preparedStatement.setInt(1, idKlienta);
 
-                String godzinaString = rsIndywidualne.getString("godzina");
+            ResultSet rsGrupowe = preparedStatement.executeQuery();
+
+            while (rsGrupowe.next()){
+
+                String godzinaString = rsGrupowe.getString("godzina");
                 Time godzina = Time.valueOf(godzinaString);
                 // trenerId tryb sala opis godzina
 
-                String dzienTygodnia = DzienTygodnia.values()[rsIndywidualne.getInt("dzienTygodnia") - 1].name();
+                String dzienTygodnia = DzienTygodnia.values()[rsGrupowe.getInt("dzienTygodnia") - 1].name();
 
-                listaTreningow.add(new TreningIndywidualny(
-                        idKlienta,
-                        rsIndywidualne.getInt("idTrenera"),
+                listaTreningow.add(new TreningGrupowy(
+                        rsGrupowe.getInt("id"), // id cwiczenia
+                        rsGrupowe.getInt("idTrenera"),
+                        rsGrupowe.getString("sala"),
+                        rsGrupowe.getString("nazwa"),
                         godzina,
-                        rsIndywidualne.getString("prowadzacy"),
                         dzienTygodnia));
             }
 
             tabelaTren.getItems().addAll(listaTreningow);
 
             preparedStatement.close();
-            rsIndywidualne.close();
+            rsGrupowe.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,16 +94,14 @@ public class ZapisTreningIndywidualnyKontroler {
     private void zapisz() {
         Trening trening = tabelaTren.getSelectionModel().getSelectedItem();
 
-        String query = "UPDATE treningi_indywidualne SET idKlienta = ? WHERE idTrenera = ? AND dzienTygodnia = ? AND godzina = ?;";
+        String query = "INSERT INTO treningi_grupowe(idCwiczenia, idKlienta) VALUE (? , ?);";
         if (trening == null) {
             return;
         }
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, idKlienta);
-            preparedStatement.setInt(2, trening.getIdTrenera());
-            preparedStatement.setInt(3, DzienTygodnia.valueOf(trening.getDzienTygodnia()).getWartosc());
-            preparedStatement.setTime(4, trening.getGodzina());
+            preparedStatement.setInt(1, ((TreningGrupowy)trening).getIdCwiczenia());
+            preparedStatement.setInt(2, idKlienta);
 
             preparedStatement.executeUpdate();
 
@@ -102,7 +109,6 @@ public class ZapisTreningIndywidualnyKontroler {
 
             listaTreningow.remove(trening);
             tabelaTren.getItems().remove(trening);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

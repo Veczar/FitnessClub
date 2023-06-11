@@ -51,13 +51,14 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="46.0" layoutY="154.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="218.0" text="Zapisz sie na trening grupowy" />
+      <Button layoutX="46.0" layoutY="154.0" mnemonicParsing="false" onAction="#zapiszNaTreningGrupowy" prefHeight="79.0" prefWidth="218.0" text="Zapisz sie na trening grupowy" />
       <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#zapiszNaTreningIndywidualny" prefHeight="79.0" prefWidth="218.0" text="Zapisz sie na trening Indywidualny" />
-      <Button layoutX="43.0" layoutY="351.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="218.0" text="Zrezygnuj z treningu" />
+      <Button layoutX="43.0" layoutY="351.0" mnemonicParsing="false" onAction="#zrezygnujZTreningu" prefHeight="79.0" prefWidth="218.0" text="Zrezygnuj z treningu" />
       <Label fx:id="karnetLabel" layoutX="34.0" layoutY="72.0" prefHeight="30.0" prefWidth="236.0" text="Data wygasniecia karnetu: ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Button layoutX="43.0" layoutY="462.0" mnemonicParsing="false" onAction="#wypiszTreningi" prefHeight="79.0" prefWidth="218.0" text="Odswiez" />
    </children>
 </AnchorPane>
