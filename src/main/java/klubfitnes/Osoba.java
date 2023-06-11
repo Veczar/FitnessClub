@@ -40,6 +40,10 @@ public abstract class Osoba {
         return haslo;
     }
 
+    public String getTypKonta() {
+        return typKonta;
+    }
+
     public String toString() {
         return id + " " + imie + " " + nazwisko + " " + telefon;
     }

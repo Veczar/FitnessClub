@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="586.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.UsunPracownikaKontroler">
+   <children>
+      <TableView fx:id="tabelaPracownikow" layoutX="45.0" layoutY="27.0" prefHeight="404.0" prefWidth="758.0">
+         <columns>
+            <TableColumn fx:id="idKol" prefWidth="58.0" text="id" />
+            <TableColumn fx:id="loginKol" prefWidth="92.0" text="Login" />
+            <TableColumn fx:id="hasloKol" prefWidth="127.0" text="Hasło" />
+            <TableColumn fx:id="typKontaKol" prefWidth="142.0" text="Typ Konta" />
+            <TableColumn fx:id="imieKol" prefWidth="152.0" text="Imie" />
+            <TableColumn fx:id="nazwiskoKol" prefWidth="185.0" text="Nazwisko" />
+         </columns>
+      </TableView>
+      <Button layoutX="285.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#usunPracownika" prefHeight="63.0" prefWidth="287.0" text="Usuń Praconika">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

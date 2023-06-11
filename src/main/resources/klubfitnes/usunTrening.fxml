@@ -8,13 +8,12 @@
 
 <AnchorPane prefHeight="528.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.UsunTreningKontroler">
    <children>
-      <TableView fx:id="tabelaTren" layoutX="52.0" layoutY="70.0" prefHeight="347.0" prefWidth="578.0">
+      <TableView fx:id="tabelaTren" layoutX="84.0" layoutY="72.0" prefHeight="347.0" prefWidth="530.0">
          <columns>
-            <TableColumn fx:id="trybKol" prefWidth="93.0" text="Tryb" />
-            <TableColumn fx:id="salaKol" prefWidth="95.0" text="Sala" />
+            <TableColumn fx:id="trybKol" prefWidth="109.0" text="Tryb" />
+            <TableColumn fx:id="salaKol" prefWidth="79.0" text="Sala" />
             <TableColumn fx:id="opisKol" prefWidth="180.0" text="Opis" />
-            <TableColumn fx:id="godzinaKol" minWidth="8.0" prefWidth="103.0" text="Godzina" />
-            <TableColumn fx:id="dzienTygodniaKol" minWidth="8.0" prefWidth="113.0" text="Dzien" />
+            <TableColumn fx:id="godzinaKol" minWidth="8.0" prefWidth="108.0" text="Godzina" />
          </columns>
       </TableView>
       <Button layoutX="244.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#usunTrening" prefHeight="65.0" prefWidth="193.0" text="Usun">
