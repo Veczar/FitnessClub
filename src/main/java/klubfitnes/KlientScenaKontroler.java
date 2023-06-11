@@ -69,10 +69,10 @@ public class KlientScenaKontroler {
             ResultSet rs = preparedStatement.executeQuery();
 
             rs.next();
-            klient = new Klient(rs.getInt("id"),
+            /*klient = new Klient(rs.getInt("id"),
                     rs.getString("imie"),
                     rs.getString("nazwisko"),
-                    rs.getString("telefon"));
+                    rs.getString("telefon"));*/ //TODO: poprawić konstruktor klienta
 
             wypiszDaneKlienta();
 

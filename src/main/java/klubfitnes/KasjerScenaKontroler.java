@@ -90,11 +90,11 @@ public class KasjerScenaKontroler {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()){
-                listaKlientow.add(new Klient(
+               /* listaKlientow.add(new Klient(
                         rs.getInt("id"),
                         rs.getString("imie"),
                         rs.getString("nazwisko"),
-                        rs.getString("telefon")));
+                        rs.getString("telefon")));*/ //TODO: poprawić
             }
             for (Klient klient : listaKlientow) {
                 System.out.println(klient);
