@@ -102,8 +102,7 @@ public class AdministratorScenaKontroler {
                         rsTrener.getString("imie"),
                         rsTrener.getString("nazwisko"),
                         rsTrener.getString("telefon"),
-                        //TypKonta.TRENER.name()
-
+                        TypKonta.TRENER.name()
                 ));
 
             }
