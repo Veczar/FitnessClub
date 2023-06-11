@@ -9,41 +9,55 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.KlientScenaKontroler">
+<AnchorPane prefHeight="669.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="klubfitnes.KlientScenaKontroler">
    <children>
-      <Label layoutX="57.0" layoutY="14.0" prefHeight="58.0" prefWidth="141.0" text="Klient">
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="141.0" text="Klient">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label fx:id="idLabel" layoutX="18.0" layoutY="66.0" prefHeight="25.0" prefWidth="33.0" text="ID: ">
+      <Label fx:id="dzienLabel" layoutX="405.0" layoutY="28.0" prefHeight="30.0" prefWidth="218.0" text="Dzien Tygodnia">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="198.0" layoutY="327.0" mnemonicParsing="false" onAction="#Wyloguj" text="Wyloguj" />
-      <TableView fx:id="tabela" layoutX="329.0" layoutY="100.0" prefHeight="200.0" prefWidth="232.0">
-        <columns>
-          <TableColumn fx:id="imieKol" prefWidth="75.0" text="imie" />
-          <TableColumn fx:id="nazwiskoKol" prefWidth="75.0" text="nazwisko" />
-            <TableColumn fx:id="telefonKol" prefWidth="75.0" text="telefon" />
-        </columns>
+      <Button layoutX="125.0" layoutY="612.0" mnemonicParsing="false" onAction="#wyloguj" text="Wyloguj" />
+      <Label layoutX="14.0" layoutY="110.0" prefHeight="30.0" prefWidth="141.0" text="Dzien tygodnia ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabelaTren" layoutX="405.0" layoutY="65.0" prefHeight="572.0" prefWidth="477.0">
+         <columns>
+            <TableColumn fx:id="trybKol" prefWidth="109.0" text="Tryb" />
+            <TableColumn fx:id="salaKol" prefWidth="79.0" text="Sala" />
+            <TableColumn fx:id="opisKol" prefWidth="180.0" text="Opis" />
+            <TableColumn fx:id="godzinaKol" minWidth="8.0" prefWidth="108.0" text="Godzina" />
+         </columns>
       </TableView>
-      <Label fx:id="idLabel1" layoutX="18.0" layoutY="106.0" prefHeight="30.0" prefWidth="141.0" text="Dzien tygodnia ">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <MenuButton layoutX="172.0" layoutY="109.0" mnemonicParsing="false" text="MenuButton">
+      <MenuButton layoutX="172.0" layoutY="113.0" mnemonicParsing="false" text="MenuButton">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#WybierzePoniedzialek" text="Poniedzialek" />
-          <MenuItem mnemonicParsing="false" onAction="#WybierzeWtorek" text="Wtorek" />
-            <MenuItem mnemonicParsing="false" onAction="#WybierzeSroda" text="Sroda" />
-            <MenuItem mnemonicParsing="false" onAction="#WybierzeCzwartek" text="Czwartek" />
-            <MenuItem mnemonicParsing="false" onAction="#WybierzePiatek" text="Piatek" />
-            <MenuItem mnemonicParsing="false" onAction="#WybierzeSobota" text="Sobota" />
-            <MenuItem mnemonicParsing="false" onAction="#WybierzeNiedziela" text="Niedziela" />
+          <MenuItem mnemonicParsing="false" onAction="#wybierzePoniedzialek" text="Poniedzialek" />
+          <MenuItem mnemonicParsing="false" onAction="#wybierzeWtorek" text="Wtorek" />
+            <MenuItem mnemonicParsing="false" onAction="#wybierzeSroda" text="Sroda" />
+            <MenuItem mnemonicParsing="false" onAction="#wybierzeCzwartek" text="Czwartek" />
+            <MenuItem mnemonicParsing="false" onAction="#wybierzePiatek" text="Piatek" />
+            <MenuItem mnemonicParsing="false" onAction="#wybierzeSobota" text="Sobota" />
+            <MenuItem mnemonicParsing="false" onAction="#wybierzeNiedziela" text="Niedziela" />
         </items>
       </MenuButton>
+      <Label fx:id="imieNazwiskoLabel" layoutX="163.0" layoutY="28.0" prefHeight="30.0" prefWidth="195.0" text="Imie Nazwisko">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="46.0" layoutY="154.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="218.0" text="Zapisz sie na trening grupowy" />
+      <Button layoutX="43.0" layoutY="256.0" mnemonicParsing="false" onAction="#zapiszNaTreningIndywidualny" prefHeight="79.0" prefWidth="218.0" text="Zapisz sie na trening Indywidualny" />
+      <Button layoutX="43.0" layoutY="351.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="218.0" text="Zrezygnuj z treningu" />
+      <Label fx:id="karnetLabel" layoutX="34.0" layoutY="72.0" prefHeight="30.0" prefWidth="236.0" text="Data wygasniecia karnetu: ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

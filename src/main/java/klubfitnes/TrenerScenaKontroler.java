@@ -152,6 +152,7 @@ public class TrenerScenaKontroler {
                 Time godzina = Time.valueOf(godzinaString);
 
                 listaTreningow.add(new TreningGrupowy(
+                        id,
                         rsGrupowe.getString("sala"),
                         rsGrupowe.getString("nazwa"),
                         godzina
@@ -181,6 +182,7 @@ public class TrenerScenaKontroler {
 
 
                 listaTreningow.add(new TreningIndywidualny(
+                        id,
                         godzina,
                         rsIndywidualne.getString("nazwa")
                 ));

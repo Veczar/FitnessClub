@@ -65,7 +65,7 @@ public class Logowanie extends Application {
             Scene klientScena = new Scene(fxmlLoader.load());
 
             KlientScenaKontroler klientScenaController = fxmlLoader.getController();
-            klientScenaController.Incjalizacja(id, conn);
+            klientScenaController.incjalizacja(id, conn);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(klientScena);
@@ -115,8 +115,6 @@ public class Logowanie extends Application {
         } else {
             System.out.println("Niepoprawne dane logowania");
         }
-
-
     }
 
 }
