@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="758a1133-93c5-4990-a7ec-0468122f7d78" name="Changes" comment="Łączenie się z bazą i dodanie wyników do tabeli">
-      <change afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/DodajKlientaKontroler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/klubfitnes/dodajKlienta.fxml" afterDir="false" />
+    <list default="true" id="758a1133-93c5-4990-a7ec-0468122f7d78" name="Changes" comment="Admin dodaje wszystkich pracowników oraz może ich usuwać (działa)">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/KasjerScenaKontroler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/KasjerScenaKontroler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/Klient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/Klient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/Logowanie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/Logowanie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/klubfitnes/kasjer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klubfitnes/kasjer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/klubfitnes/ZapisTreningGrupowyKontroler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/klubfitnes/ZapisTreningGrupowyKontroler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,19 +20,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="Enum" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -47,14 +42,19 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2QWD65MKCjK0urb8UitzKzaPVqO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -66,13 +66,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Logowanie.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "last_opened_file_path": "C:/Users/Vecza/java_font/jfoenix-9.0.10.jar",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Vecza/IntelliJ_Projects/KlubFitnes",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -80,12 +82,13 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "profiler.jvm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vecza\IntelliJ_Projects\KlubFitnes\src\main\resources\klubfitnes" />
       <recent name="D:\OneDrive - Politechnika Krakowska im. Tadeusza Kościuszki\Studia\IV_Semestr\Obiektowe\KlubFitnes\src\main\resources\klubfitnes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -96,6 +99,13 @@
     <option name="myCommands">
       <command value="mvn install" />
     </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-corretto-20.0.2.1-3183f394aec4-907a2361" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,6 +122,8 @@
       <workItem from="1686048537183" duration="8478000" />
       <workItem from="1686142928583" duration="58000" />
       <workItem from="1686142996090" duration="717000" />
+      <workItem from="1710339246148" duration="336000" />
+      <workItem from="1710339608393" duration="305000" />
     </task>
     <task id="LOCAL-00001" summary="Podstawowe Logowanie">
       <created>1685470280200</created>
@@ -120,7 +132,56 @@
       <option name="project" value="LOCAL" />
       <updated>1685470280200</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Kasjer wypisuje wszystkich klientów z bazy i może do niej dodawać">
+      <created>1686209345622</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686209345622</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Dzień Tygodnia">
+      <created>1686392692122</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686392692122</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Trener wyświetlający treningi indywidualne i grupowe">
+      <created>1686414937287</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686414937287</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Trener dodaje Treningi grupowe i naprawiłem ten błąd co wyskakiwał chuj">
+      <created>1686428626062</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686428626062</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Trener usuwa obydwa rodzaje treningów">
+      <created>1686487153910</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686487153910</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Admin działaj plis">
+      <created>1686497572175</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686497572175</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Admin dodaje wszystkich pracowników oraz może ich usuwać (działa)">
+      <created>1686514751160</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1686514751160</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +192,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -141,7 +214,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Podstawowe Logowanie" />
     <MESSAGE value="Łączenie się z bazą i dodanie wyników do tabeli" />
-    <option name="LAST_COMMIT_MESSAGE" value="Łączenie się z bazą i dodanie wyników do tabeli" />
+    <MESSAGE value="Kasjer wypisuje wszystkich klientów z bazy i może do niej dodawać" />
+    <MESSAGE value="Dzień Tygodnia" />
+    <MESSAGE value="Trener wyświetlający treningi indywidualne i grupowe" />
+    <MESSAGE value="Trener dodaje Treningi grupowe i naprawiłem ten błąd co wyskakiwał chuj" />
+    <MESSAGE value="Trener usuwa obydwa rodzaje treningów" />
+    <MESSAGE value="Admin działaj plis" />
+    <MESSAGE value="Admin dodaje wszystkich pracowników oraz może ich usuwać (działa)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin dodaje wszystkich pracowników oraz może ich usuwać (działa)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -152,5 +232,10 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/KlubFitnes$Logowanie.ic" NAME="Logowanie Coverage Results" MODIFIED="1686385627581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>klubfitnes.*</FILTER>
+    </SUITE>
   </component>
 </project>
