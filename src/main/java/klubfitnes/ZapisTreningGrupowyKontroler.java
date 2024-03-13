@@ -52,11 +52,12 @@ public class ZapisTreningGrupowyKontroler {
         try {
             listaTreningow.clear();
 
-            String queryGrupowe = "SELECT id, idTrenera, nazwa, dzienTygodnia, godzina, sala, liczbaMiejsc, " +
+                    String queryGrupowe = "SELECT id, idTrenera, nazwa, dzienTygodnia, godzina, sala, liczbaMiejsc, " +
                     "COUNT(treningi_grupowe.idCwiczenia) as liczbaUczestnikow FROM cwiczenia_grupowe " +
                     "LEFT JOIN treningi_grupowe ON cwiczenia_grupowe.id = treningi_grupowe.idCwiczenia " +
                     "WHERE id NOT IN (SELECT idCwiczenia FROM treningi_grupowe WHERE idKlienta = ?) " +
-                    "HAVING liczbaUczestnikow < liczbaMiejsc; ";
+                    "GROUP BY cwiczenia_grupowe.id " +
+                    "HAVING liczbaUczestnikow < liczbaMiejsc;";
 
             PreparedStatement preparedStatement = connection.prepareStatement(queryGrupowe);
             preparedStatement.setInt(1, idKlienta);
